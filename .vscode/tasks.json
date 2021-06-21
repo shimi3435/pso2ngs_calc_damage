@@ -1,0 +1,54 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "problemMatcher": "$gcc",
+    "presentation": {
+      "echo": true,
+      "reveal": "always",
+      "focus": true,
+      "panel": "shared",
+      "showReuseMessage": false, //再利用のメッセージを表示しない
+      "clear": false
+    },
+    "tasks": [
+      {
+        "command": "cmake",
+        "label": "cmake_g++",
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "args": [
+          "-H.",
+          "-Bbuild",
+          "-DCMAKE_TOOLCHAIN_FILE=./g++.cmake",
+          "-DCMAKE_INSTALL_PREFIX=./EXEC"
+        ],
+      },
+      {
+        "command": "cmake",
+        "label": "make",
+        "group": "none",
+        "args": [
+          "--build",
+          "./build",
+          "--target",
+          "install",
+          "--",
+          "-j"
+        ],
+      },
+      {
+        "command": "rm",
+        "label": "clean",
+        "group": "none",
+        "args": [
+          "-rf",
+          "./build",
+        ],
+      },
+    ]
+  }
+  
+  
